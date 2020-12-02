@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimientos - {% block titulo %}{% endblock %}</title>
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+        header{
+            display: block;
+            color: rgb(139, 222, 255);
+            background-color: rgb(133, 71, 18);
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        otro texto
+        <p>Nombre de mi aplicacion: Cash</p>
+    </header>
+
+    <section>
+        {% block contenido %}{% endblock %}
+    </section>
+
+    <footer>
+        &copy; 2020 - 2021 Todos los derechos reservados
+    </footer>
+
+</body>
+</html>
