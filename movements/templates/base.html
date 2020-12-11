@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movimientos - {% block titulo %}{% endblock %}</title>
-    <style>
-        * {
-            font-family: sans-serif;
-        }
-        header{
-            display: block;
-            color: rgb(139, 222, 255);
-            background-color: rgb(133, 71, 18);
-            font-family: 'Courier New', Courier, monospace;
-        }
-    </style>
+    <title>Mi Kakebo - {% block titulo %}{% endblock %}</title>
+
 </head>
 <body>
     <header>
-        otro texto
-        <p>Nombre de mi aplicacion: Cash</p>
+        <p>Proyecto: Kakebo</p>
     </header>
 
     <section>
-        {% block contenido %}{% endblock %}
+        {% block resumen %}{% endblock %} <!--"resumen" es el nombre del bloque tanto para movementsList.html como para alta.html. Si cambio el nombre no funciona.-->
     </section>
 
+    <br><br>
     <footer>
         &copy; 2020 - 2021 Todos los derechos reservados
     </footer>

@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
 
-{% block titulo %} lista {% endblock %}
+{% block titulo %} Resumen {% endblock %}
 
-{% block contenido %}
-        <h1>Lista de movimientos</h1>
-        <p>Aquí va mi lista de movimientos</p>
+{% block resumen %}
+        <h1>Ingresos mensuales <a href="creaalta">Nuevo</a> </h1> <!--- link que lleva a creaalta-->
+        <table>
+                <tr>
+                        <th>Fecha</th>
+                        <th>Concepto</th>
+                        <th>Importe</th>
+                </tr>
+        {% for registro in datos %} <!--- bucle FOR en jinja para mostrar cada registro en datos -->
+                <tr>
+                        <td> <a href="modifica/{{registro[3]}}"> {{ registro[0] }} </a></td> <!--- ahora la fecha será un link que lleva a modifica-->
+                        <td>{{ registro[1] }}</td>
+                        <td>{{ registro[2] }}€</td>
+                </tr>
+        {% endfor %}
+        </table>
+        <br>
+        <table>
+                <tr>
+                        <td colspan="3">Total: {{ total }}€</td>
+                </tr>
+        </table>
+        </form>
 {% endblock %}

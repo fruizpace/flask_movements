@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Crea alta {% endblock %}
+
+{% block resumen %} <!-- esta línea es Jinja, abajo es html-->
+    <form action="/creaalta" method="POST">
+        <div class="field">
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" required> <!--required  para que sea obligatorio. Esto se suele hacer con javascript no con html-->
+        </div>
+        
+        <div class="field">
+            <label for="concepto">Concepto:</label>
+            <input type="text" name="concepto">
+        </div>
+
+        <div class="field">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" step="0.01" min="0.00">           
+        </div>
+
+        <div class="field">
+            <input type="submit" value="Aceptar"> <!-- tipo submit, envía los datos entrados arriba -->
+        </div>
+    </form>  
+
+{% endblock %}
