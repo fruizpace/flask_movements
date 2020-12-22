@@ -6,7 +6,17 @@
 {% block titulo %} Modificar {% endblock %}
 
 {% block resumen %} <!-- esta línea es Jinja, abajo es html-->
-    <h1> Registro seleccionado </h1> 
+    <h1> Registro seleccionado </h1>
+    <style>
+        table {font-family: arial, sans-serif; border-collapse: collapse; width: 100%;
+        }
+        
+        td, th {border: 1px solid #dddddd; text-align: left; padding: 8px;
+        }
+        
+        tr:nth-child(even) {background-color: #dddddd;
+        }
+        </style>
     <table>
             <tr>
                 <th>Fecha</th>
@@ -14,39 +24,55 @@
                 <th>Importe</th>
             </tr>
             <tr>
-                <td> {{ datomodificado[0] }} </td> 
-                <td> {{ datomodificado[1] }} </td> 
-                <td> {{ datomodificado[2] }} </td> 
+                <td> {{ form.fecha.data }} </td> 
+                <td> {{ form.concepto.data }} </td> 
+                <td> {{ form.cantidad.data }} </td> 
             </tr>
     </table>
 
     <br>
-    <form action="/modifica/{{datomodificado[3]}}" method="POST">
+    <form action="/delete/{{ id }}" method="POST">
         <div class="field">
             <input type="submit" value="Eliminar registro"> 
         </div>
     </form>
 
     <h1> Campos para modificar </h1> 
-    <form action="/modifica/{{datomodificado[3]}}" method="POST">
-        <div class="field">
-            <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" required value="{{datomodificado[0]}}"> 
+    <form action="/modifica/{{ id }}" method="POST">
+        {{ form.hidden_tag() }}  <!---  muy importante para que funcione el form.validate() --->
+        <div class="field"> <!--- crea un campo --->
+            {{ form.fecha.label }} <!--- usa el label del "form" en el campo --->
+            {{ form.fecha }} <!--- usa la info de form.fecha para rellenar el campo --->
+            {% for msg in form.fecha.errors %}
+            <p class="err-msg">
+                {{ msg }}
+            </p>
+            {% endfor %}
         </div>
 
         <div class="field">
-            <label for="concepto">Concepto:</label>
-            <input type="text" name="concepto" required value="{{datomodificado[1]}}">
+            {{ form.concepto.label }}
+            {{ form.concepto }}
+            {% for msg in form.concepto.errors %}
+            <p class="err-msg">
+                {{ msg }}
+            </p>
+            {% endfor %}
         </div>
 
         <div class="field">
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" name="cantidad" step="0.01" min="0.00" required value="{{datomodificado[2]}}">           
+            {{ form.cantidad.label }}
+            {{ form.cantidad }}
+            {% for msg in form.cantidad.errors %}
+            <p class="err-msg">
+                {{ msg }}
+            </p>
+            {% endfor %}
         </div>
 
         <br>
         <div class="field">
-            <input type="submit" value="Modificar"> <!-- tipo submit, envía los datos entrados arriba -->
+            {{ form.submit }} <!-- tipo submit, envía los datos entrados arriba -->
         </div>
     </form>  
 

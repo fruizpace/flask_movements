@@ -3,26 +3,41 @@
 {% block titulo %} Resumen {% endblock %}
 
 {% block resumen %}
-        <h1>Ingresos mensuales <a href="creaalta">Nuevo</a> </h1> <!--- link que lleva a creaalta-->
-        <table>
-                <tr>
-                        <th>Fecha</th>
-                        <th>Concepto</th>
-                        <th>Importe</th>
-                </tr>
-        {% for registro in datos %} <!--- bucle FOR en jinja para mostrar cada registro en datos -->
-                <tr>
-                        <td> <a href="modifica/{{registro[3]}}"> {{ registro[0] }} </a></td> <!--- ahora la fecha será un link que lleva a modifica-->
-                        <td>{{ registro[1] }}</td>
-                        <td>{{ registro[2] }}€</td>
-                </tr>
-        {% endfor %}
-        </table>
-        <br>
-        <table>
-                <tr>
-                        <td colspan="3">Total: {{ total }}€</td>
-                </tr>
-        </table>
-        </form>
+<style>
+        table {font-family: arial, sans-serif; border-collapse: collapse; width: 100%;
+        }
+        
+        td, th {border: 1px solid #dddddd; text-align: left; padding: 8px;
+        }
+        
+        tr:nth-child(even) {background-color: #dddddd;
+        }
+</style>
+
+
+        <h1 style="color:black;">Ingresos mensuales <a href="creaalta" style="color: tomato;">Nuevo</a> </h1> <!--- link que lleva a creaalta-->
+        {% if datos | length > 0 %}
+                <table>
+                        <tr>
+                                <th>Fecha</th>
+                                <th>Concepto</th>
+                                <th>Importe</th>
+                        </tr>
+                {% for registro in datos %} <!--- bucle FOR en jinja para mostrar cada registro en datos -->
+                        <tr>
+                                <td> <a href="modifica/{{registro['id']}}"> {{ registro['fecha'] }} </a></td> <!--- ahora la fecha será un link que lleva a modifica-->
+                                <td>{{ registro['concepto'] }}</td>
+                                <td>{{ registro['cantidad'] }}€</td>
+                        </tr>
+                {% endfor %}
+                </table>
+                <br>
+                <table>
+                        <tr>
+                                <td colspan="3">Total: {{ total }}€</td>
+                        </tr>
+                </table>
+        {% else %}
+                <p>No hay movimientos</p>
+        {% endif %}
 {% endblock %}

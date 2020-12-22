@@ -4,3 +4,6 @@ movements/__pycache__/
 .env
 .vscode/
 steps.md
+movements/data/basededatos.csv
+movements/data/basededatos.db
+config.py

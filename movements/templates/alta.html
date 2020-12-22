@@ -3,25 +3,40 @@
 {% block titulo %} Crea alta {% endblock %}
 
 {% block resumen %} <!-- esta línea es Jinja, abajo es html-->
+
+<h1 style="color:black;"> Nuevo ingreso </h1>
+
     <form action="/creaalta" method="POST">
+        {{ form.hidden_tag() }}
         <div class="field">
-            <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" required> <!--required  para que sea obligatorio. Esto se suele hacer con javascript no con html-->
+            {{ form.fecha.label }}
+            {{ form.fecha(type="date") }}
+            {% for msg in form.fecha.errors %}
+                <p class="err-msg">
+                    <span style="color: red;">[{{ msg }}]</span>
+                </p>
+            {% endfor %}
         </div>
-        
         <div class="field">
-            <label for="concepto">Concepto:</label>
-            <input type="text" name="concepto">
+            {{ form.concepto.label }}
+            {{ form.concepto(placeholder='Definir ingreso') }}
+            {% for msg in form.concepto.errors %}
+                <p class="err-msg">
+                    <span style="color: red;">[{{ msg }}]</span>
+                </p>
+            {% endfor %}
         </div>
-
         <div class="field">
-            <label for="cantidad">Cantidad:</label>
-            <input type="number" name="cantidad" step="0.01" min="0.00">           
+            {{ form.cantidad.label }}
+            {{ form.cantidad(placeholder='Escribe un número') }}
+            {% for msg in form.cantidad.errors %}
+                <p class="err-msg">
+                    {{ msg }}
+                </p>
+            {% endfor %}
         </div>
-
         <div class="field">
-            <input type="submit" value="Aceptar"> <!-- tipo submit, envía los datos entrados arriba -->
-        </div>
-    </form>  
-
-{% endblock %}
+            {{ form.submit }}
+        </div>  
+    </form>
+    {%  endblock %}
