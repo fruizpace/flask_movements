@@ -1,5 +1,5 @@
 from movements import app
-from movements.forms import MovementForm # importo la clase del formulario que me he creado
+from movements.forms import MovementForm # importo la clase del formulario flask que me he creado en forms.py
 from flask import render_template, request, url_for, redirect # request es un objeto que flask crea con todos los datos que se hace en una petición
 import csv
 import sqlite3
@@ -69,12 +69,10 @@ def nuevoIngreso():
 def modificaIngreso(id):
     
     if request.method == 'GET': # si hago click en modificar un registro: selecciona toda la info del id=? y muéstrame modifica.html
-        
-        
         query = "SELECT fecha, concepto, cantidad, id FROM movimientos WHERE id=?;"
         miingreso = consulta(query, (id,))[0] # el registro que me interesa modificar. cogemos todas las variables que usaremos. Dejamos la coma para q me de una tupla
         # en lugar de c.fetchone uso consulta()[0]
-        miingreso['fecha'] = date.fromisoformat(miingreso['fecha'])
+        miingreso['fecha'] = date.fromisoformat(miingreso['fecha']) # transformo la cadena fecha a tipo date
         form = MovementForm(data=miingreso) # haz un formulario usando datos que vienen de una tabla
         
         return render_template('modifica.html', form=form, id=id ) # antiguo "datomodificado"
@@ -88,7 +86,6 @@ def modificaIngreso(id):
             return redirect(url_for('listaMovimientos')) # redirigimos hacia la pagina principal pero como python
         else:
             return render_template('modifica.html', form=form, id=id )
-
 
 
 @app.route("/delete/<id>", methods=['GET', 'POST']) 

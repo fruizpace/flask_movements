@@ -14,27 +14,33 @@
         }
 </style>
 
-
-        <h1 style="color:black;">Ingresos mensuales <a href="creaalta" style="color: tomato;">Nuevo</a> </h1> <!--- link que lleva a creaalta-->
+        <div class="title grid">
+                <h1 style="color:black;"> Apuntes </h1> 
+                <div class="title_button-new">
+                        <a role="button" href="/creaalta" style="color: rgb(255, 255, 255);">Nuevo apunte</a> <!--- link que lleva a creaalta-->
+                </div>
+        </div>
         {% if datos | length > 0 %}
                 <table>
                         <tr>
-                                <th>Fecha</th>
-                                <th>Concepto</th>
-                                <th>Importe</th>
+                                <th class="fecha">Fecha</th>
+                                <th class="concepto">Concepto</th>
+                                <th class="cantidad">Importe</th>
+                                <th class="acciones">Acciones</th>
                         </tr>
                 {% for registro in datos %} <!--- bucle FOR en jinja para mostrar cada registro en datos -->
                         <tr>
-                                <td> <a href="modifica/{{registro['id']}}"> {{ registro['fecha'] }} </a></td> <!--- ahora la fecha será un link que lleva a modifica-->
+                                <td>{{ registro['fecha'] }}   </td> 
                                 <td>{{ registro['concepto'] }}</td>
                                 <td>{{ registro['cantidad'] }}€</td>
+                                <td><a href="/modifica/{{ registro['id'] }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></td> <!--- ahora el icono será un link que lleva a modifica con su id correspondiente -->
                         </tr>
                 {% endfor %}
                 </table>
                 <br>
                 <table>
                         <tr>
-                                <td colspan="3">Total: {{ total }}€</td>
+                                <td class="total" colspan="3">Total: {{ total }}€</td>
                         </tr>
                 </table>
         {% else %}

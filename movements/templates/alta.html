@@ -1,42 +1,53 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- parte del esqueleto base.html -->
 
 {% block titulo %} Crea alta {% endblock %}
 
 {% block resumen %} <!-- esta línea es Jinja, abajo es html-->
 
-<h1 style="color:black;"> Nuevo ingreso </h1>
+<h1 style="color:black;"> Nuevo apunte </h1>
 
     <form action="/creaalta" method="POST">
         {{ form.hidden_tag() }}
+
         <div class="field">
-            {{ form.fecha.label }}
+            <p>
+            {{ form.fecha.label }} <br>
             {{ form.fecha(type="date") }}
             {% for msg in form.fecha.errors %}
                 <p class="err-msg">
                     <span style="color: red;">[{{ msg }}]</span>
                 </p>
             {% endfor %}
+            </p>
         </div>
+
         <div class="field">
-            {{ form.concepto.label }}
-            {{ form.concepto(placeholder='Definir ingreso') }}
+            <p>
+            {{ form.concepto.label }} <br> <!---etiqueta--->
+            {{ form.concepto(placeholder='Defina el apunte') }} 
             {% for msg in form.concepto.errors %}
                 <p class="err-msg">
                     <span style="color: red;">[{{ msg }}]</span>
                 </p>
             {% endfor %}
+            </p>
         </div>
+
         <div class="field">
-            {{ form.cantidad.label }}
-            {{ form.cantidad(placeholder='Escribe un número') }}
+            <p>
+            {{ form.cantidad.label }} <br>
+            {{ form.cantidad(placeholder='Entre la cantidad') }}
             {% for msg in form.cantidad.errors %}
                 <p class="err-msg">
                     {{ msg }}
                 </p>
             {% endfor %}
+            </p>
         </div>
+
         <div class="field">
             {{ form.submit }}
-        </div>  
+        </div>
+        
     </form>
     {%  endblock %}

@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Kakebo - {% block titulo %}{% endblock %}</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi Kakebo - {% block title %}{% endblock %}</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/css/pico.css">
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
 
-</head>
-<body>
-    <header>
-        <p>Proyecto: Kakebo</p>
-    </header>
+    <body>
+        <header data-theme="dark">
+            <div class="header_kakebo"> Proyecto: Kakebo </div>
+            <nav> <!-- contiene enlaces de navegación -->
+                <ul>
+                    <li><a href="/"> Inicio </a></li>
+                    <li><a href="/creaalta"> Nuevo </a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <section>
-        {% block resumen %}{% endblock %} <!--"resumen" es el nombre del bloque tanto para movementsList.html como para alta.html. Si cambio el nombre no funciona.-->
-    </section>
+        <div class="container">
+            {% block resumen %}{% endblock %} <!--"resumen" es el nombre del bloque tanto para movementsList.html como para alta.html. Si cambio el nombre no funciona.-->
+        </div>
 
-    <br><br>
-    <footer>
-        &copy; 2020 - 2021 Todos los derechos reservados
-    </footer>
-
-</body>
+        <footer data-theme="dark">
+            &copy; 2020 - 2021. Todos los derechos reservados
+        </footer>
+    </body>
 </html>

@@ -6,17 +6,7 @@
 {% block titulo %} Modificar {% endblock %}
 
 {% block resumen %} <!-- esta línea es Jinja, abajo es html-->
-    <h1> Registro seleccionado </h1>
-    <style>
-        table {font-family: arial, sans-serif; border-collapse: collapse; width: 100%;
-        }
-        
-        td, th {border: 1px solid #dddddd; text-align: left; padding: 8px;
-        }
-        
-        tr:nth-child(even) {background-color: #dddddd;
-        }
-        </style>
+    <h1> ¿Eliminar el registro seleccionado? </h1>
     <table>
             <tr>
                 <th>Fecha</th>
@@ -36,10 +26,12 @@
             <input type="submit" value="Eliminar registro"> 
         </div>
     </form>
-
-    <h1> Campos para modificar </h1> 
-    <form action="/modifica/{{ id }}" method="POST">
+<br>
+    <h1> ¿Modificar el registro seleccionado?</h1> 
+    <h4>Introduzca los nuevos datos en cada campo</h4>
+        <form action="/modifica/{{ id }}" method="POST">
         {{ form.hidden_tag() }}  <!---  muy importante para que funcione el form.validate() --->
+
         <div class="field"> <!--- crea un campo --->
             {{ form.fecha.label }} <!--- usa el label del "form" en el campo --->
             {{ form.fecha }} <!--- usa la info de form.fecha para rellenar el campo --->
@@ -50,7 +42,7 @@
             {% endfor %}
         </div>
 
-        <div class="field">
+        <div class="field"> <!--- División html tipo "campo" -->
             {{ form.concepto.label }}
             {{ form.concepto }}
             {% for msg in form.concepto.errors %}
